@@ -1,6 +1,10 @@
-# � Financial & Utility Calculators Hub
+# Financial & Utility Calculators Hub
 
-![Calculator Banner](https://via.placeholder.com/1200x400?text=Financial+Calculators) 
+## ℹ️ Как запускать api-app через терминал
+- в терминале написать команду make run
+- запуститься сервер на http://localhost:8080/
+
+![Calculator Banner]() <!-- Consider adding a real banner image -->
 
 ## 📋 Оглавление
 - [Финансовые калькуляторы](#-финансовые-калькуляторы)
