@@ -12,6 +12,7 @@ type Response struct {
 }
 
 func main() {
+	println("Starting server on :8080") // Добавьте эту строку
 
 	// Обработчик для маршрута "/"
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
