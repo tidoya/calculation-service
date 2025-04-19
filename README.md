@@ -4,6 +4,15 @@
 - в терминале написать команду make run
 - запуститься сервер на http://localhost:8080/
 
+# Как запустить на Windows 
+- Установить make на windows.
+- Установить air пакет на go
+go install github.com/cosmtrek/air@latest
+или
+go install github.com/air-verse/air@latest
+- Проверить переменные среды на windows, должно быть %USERPROFILE%\go\bin\air.exe 
+https://habr.com/ru/posts/823682/
+
 ![Calculator Banner]() <!-- Consider adding a real banner image -->
 
 ## 📋 Оглавление
