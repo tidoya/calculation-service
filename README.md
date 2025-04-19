@@ -5,6 +5,8 @@
 - запуститься сервер на http://localhost:8080/
 
 
+## [Установка make и пакета air + проблемы](https://github.com/tidoya/calculation-service/blob/main/init-install.md)
+
 # Как запустить на Windows 
 - Установить make на windows.
 - Установить air пакет на go
