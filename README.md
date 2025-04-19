@@ -1,5 +1,9 @@
 # Financial & Utility Calculators Hub
 
+## ℹ️ Как запускать api-app через терминал
+- в терминале написать команду make run
+- запуститься сервер на http://localhost:8080/
+
 ![Calculator Banner]() <!-- Consider adding a real banner image -->
 
 ## 📋 Оглавление
