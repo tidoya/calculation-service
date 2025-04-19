@@ -21,7 +21,7 @@ func main() {
 
 		// Создаем JSON-ответ
 		response := Response{
-			Message: "Hello, G2221111O 2LANGD ADSDASD!",
+			Message: "Hello, G2222O 2LANG!",
 			Status:  200,
 		}
 
@@ -31,4 +31,5 @@ func main() {
 
 	// Запускаем сервер на порту 8080
 	http.ListenAndServe(":8080", nil)
+
 }
