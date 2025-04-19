@@ -1,0 +1,20 @@
+version: '2'
+run: 
+  timeout: 10s
+linters: 
+  default: standard
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+    - golines
+  settings:
+    option: value
+  exclusions:
+    warn-unused: true
+    generated: strict
+    paths:
+      - ".*\\.my\\.go$"
+      - lib/bad.go
