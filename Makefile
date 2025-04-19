@@ -1,6 +1,11 @@
 # Makefile
 .PHONY: run build install
 
+.PHONY: dev
+
+dev:
+	air
+
 run:
 	go run cmd/api/main.go
 
