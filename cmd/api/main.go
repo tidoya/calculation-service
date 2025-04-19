@@ -12,8 +12,6 @@ type Response struct {
 }
 
 func main() {
-   println("Starting server on :8080")  // Добавьте эту строку
-
 
 	// Обработчик для маршрута "/"
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +20,7 @@ func main() {
 
 		// Создаем JSON-ответ
 		response := Response{
-			Message: "Hello, G2221111O 2LANG!",
+			Message: "Hello, G2222O 2LANG!",
 			Status:  200,
 		}
 
@@ -32,4 +30,5 @@ func main() {
 
 	// Запускаем сервер на порту 8080
 	http.ListenAndServe(":8080", nil)
+
 }

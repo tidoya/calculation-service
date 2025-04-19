@@ -6,7 +6,7 @@
 dev:
 	air
 
-run:
+run_legacy:
 	go run cmd/api/main.go
 
 build:

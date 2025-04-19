@@ -7,7 +7,6 @@ delay = 1000 # ms
 
 [log]
 time = true
-prefix = "[Порт: 8080]"
 
 [color]
 main = "magenta"
