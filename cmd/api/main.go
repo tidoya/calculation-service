@@ -13,15 +13,9 @@ import (
 //	@host localhost:8080
 //	@BasePath /
 
-// @securityDefinitions.apikey ApiKeyAuth
-// @in header
-// @name Autorization
-
-// Данные, которые будем отдавать в JSON
-type Response struct {
-	Message string `json:"message"`
-	Status  int    `json:"status"`
-}
+//	@securityDefinitions.apikey ApiKeyAuth
+//	@in header
+//	@name Autorization
 
 func main() {
 	handlers := new(handler.Handler)
