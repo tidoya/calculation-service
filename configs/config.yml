@@ -1,0 +1,11 @@
+port: '8080'
+
+# Понимаю что нельзя это здесь хранить
+DataBasePostgress:
+  host: 'localhost'
+  port: '51130'
+  username: 'postgres'
+  password: 'ghbdtn'
+  dbname: 'postgres'
+  sslmode: 'disable'
+

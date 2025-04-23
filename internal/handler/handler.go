@@ -1,10 +1,16 @@
 package handler
 
 import (
+	"calculation-service/service"
 	"net/http"
 )
 
 type Handler struct {
+	services *service.Service
+}
+
+func NewHandler(services *service.Service) *Handler {
+	return &Handler{services: services}
 }
 
 // @FIX-ME
