@@ -12,7 +12,7 @@ type Server struct {
 }
 
 func (s *Server) RunServer(port string, handler http.Handler) error {
-	fmt.Printf("Сервер запущен на http://localhost%s\n", port)
+	fmt.Printf("Сервер запущен на http://localhost%s\n", ":"+port)
 
 	s.httpServer = &http.Server{
 		Addr:           ":" + port,
