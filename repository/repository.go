@@ -1,8 +1,13 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	Calculation "calculation-service/internal/entity/user"
+
+	"github.com/jmoiron/sqlx"
+)
 
 type Autorization interface {
+	CreateUser(user Calculation.User) (int, error)
 }
 
 type Repository struct {
@@ -10,5 +15,7 @@ type Repository struct {
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
-	return &Repository{}
+	return &Repository{
+		Autorization: NewAuthPostgres(db),
+	}
 }

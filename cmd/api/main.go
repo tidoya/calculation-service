@@ -5,9 +5,9 @@ import (
 	Calculation "calculation-service/internal/transport/http/server"
 	"calculation-service/repository"
 	"calculation-service/service"
-	"log"
 
 	_ "github.com/lib/pq"
+	"github.com/sirupsen/logrus"
 
 	"github.com/spf13/viper"
 )
@@ -24,8 +24,10 @@ import (
 //	@name Autorization
 
 func main() {
+	logrus.SetFormatter(new(logrus.JSONFormatter))
+
 	if err := initConfig(); err != nil {
-		log.Fatalf("error initializing config: %s", err.Error())
+		logrus.Fatalf("error initializing config: %s", err.Error())
 	}
 
 	db, err := repository.NewPostgresDB(repository.Config{
@@ -33,12 +35,12 @@ func main() {
 		Port:     viper.GetString("DataBasePostgress.port"),
 		Username: viper.GetString("DataBasePostgress.username"),
 		Password: viper.GetString("DataBasePostgress.password"),
-		DBName:   viper.GetString("DataBasePostgress.DBName"),
+		DBName:   viper.GetString("DataBasePostgress.dbname"),
 		SSLMode:  viper.GetString("DataBasePostgress.sslmode"),
 	})
 
 	if err != nil {
-		log.Fatalf("failed to initialize db: %s", err.Error())
+		logrus.Fatalf("failed to initialize db: %s", err.Error())
 	}
 
 	repos := repository.NewRepository(db)
@@ -47,7 +49,7 @@ func main() {
 
 	server := new(Calculation.Server)
 	if err := server.RunServer(viper.GetString("port"), handlers.InitRoutes()); err != nil {
-		log.Fatalf("error occurred while running http server: %s", err.Error())
+		logrus.Fatalf("error occurred while running http server: %s", err.Error())
 	}
 
 }
