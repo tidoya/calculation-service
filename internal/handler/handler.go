@@ -2,7 +2,8 @@ package handler
 
 import (
 	"calculation-service/service"
-	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Handler struct {
@@ -15,15 +16,16 @@ func NewHandler(services *service.Service) *Handler {
 
 // @FIX-ME
 // GIN Есть вопрос стоит ли использовать фреймворк gin для работы с http или пользоваться нативом
-func (h *Handler) InitRoutes() *http.ServeMux {
-	router := http.NewServeMux()
+func (h *Handler) InitRoutes() *gin.Engine {
+	router := gin.New()
 
 	// AUTH routes
-	router.HandleFunc("/auth/sign-up", h.signUp)
-	router.HandleFunc("/auth/sign-in", h.signIn)
-	router.HandleFunc("/auth/logout", h.logout)
-
-	// router.HandleFunc("/auth/logout", nil)
+	auth := router.Group("/auth")
+	{
+		auth.POST("/sign-up", h.signUp)
+		auth.POST("/sign-in", h.signIn)
+		auth.POST("/logout", h.logout)
+	}
 
 	return router
 

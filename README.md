@@ -14,7 +14,17 @@ go install github.com/air-verse/air@latest
 https://habr.com/ru/posts/823682/
 
 # Запуск postgress локально на своей машине разворачиваем в Docker
-https://www.youtube.com/watch?v=xJ7NC8xeJus&ab_channel=MaksimZhashkevych
+-- docker pull postgres
+-- docker run --name=calculation-db -e POSTGRES_PASSWORD='qwerty' -p 5436:5432 -d --rm postgress
+// если нужны файлы миграции(не нужно они созданы)
+-- migrate create -ext sql -dir ./schema -seq init
+// поднять файлы миграции 
+-- migrate -path ./schema -database 'postgres://postgres:qwerty@localhost:5436/postgres?sslmode=disable' up
+// подключиться к бд
+-- docker exec -it "container id(DOCKER PS)" /bin/bash
+// посмотреть схему бд
+-- psql -U postgres
+-- \d
 
 ![Calculator Banner]() <!-- Consider adding a real banner image -->
 
