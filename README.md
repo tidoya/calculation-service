@@ -15,7 +15,7 @@ https://habr.com/ru/posts/823682/
 
 # Запуск postgress локально на своей машине разворачиваем в Docker
 -- docker pull postgres
--- docker run --name=calculation-db -e POSTGRES_PASSWORD='qwerty' -p 5436:5432 -d --rm postgress
+-- docker run --name=calculation-db -e POSTGRES_PASSWORD='qwerty' -p 5436:5432 -d --rm postgres
 // если нужны файлы миграции(не нужно они созданы)
 -- migrate create -ext sql -dir ./schema -seq init
 // поднять файлы миграции 
