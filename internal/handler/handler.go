@@ -14,8 +14,6 @@ func NewHandler(services *service.Service) *Handler {
 	return &Handler{services: services}
 }
 
-// @FIX-ME
-// GIN Есть вопрос стоит ли использовать фреймворк gin для работы с http или пользоваться нативом
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 

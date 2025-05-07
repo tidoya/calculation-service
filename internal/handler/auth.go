@@ -7,10 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h *Handler) signIn(w *gin.Context) {
-
-}
-
 // @Summary SignUp
 // @Tags auth
 // @Description create account
@@ -41,16 +37,43 @@ func (h *Handler) signUp(c *gin.Context) {
 		"id": id,
 	})
 
-	// err := r.ParseForm()
-	// if err != nil {
-	// 	http.Error(w, "Error parsing form", http.StatusBadRequest)
-	// 	return
-	// }
-	// username := r.FormValue("username")
-	// password := r.FormValue("password")
-	// fmt.Print(username, password)
-	// w.Header().Set("Content-Type", "text/plain")
-	// fmt.Fprintf(w, "Received username: %s have %s pass", username, password)
+}
+
+type singInInput struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+// @Summary SignIn
+// @Tags auth
+// @Description login
+// @ID login
+// @Accept  json
+// @Produce  json
+// @Param input body signInInput true "credentials"
+// @Success 200 {string} string "token"
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /auth/sign-in [post]
+func (h *Handler) signIn(c *gin.Context) {
+	var input singInInput
+
+	if err := c.BindJSON(&input); err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	token, err := h.services.Autorization.GenerateToken(input.Username, input.Password)
+
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"token": token,
+	})
 }
 
 func (h *Handler) logout(w *gin.Context) {
