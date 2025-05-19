@@ -25,6 +25,14 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/logout", h.logout)
 	}
 
+	api := router.Group("/api", h.userIdentity)
+	{
+		calculations := api.Group("/calculations")
+		{
+			calculations.GET("/", h.createCalculationProcent)
+		}
+	}
+
 	return router
 
 }
