@@ -24,9 +24,13 @@ func main() {
 	{
         api.GET("/hello", helloHandler)
         api.GET("/hell", helloHandler2)
+
+//         группа ручек для авторизации
+//         тут нужно вставить middleware auth(yes/no)
+//         тут ручки для авторизованного
 	}
 
-logrus.SetFormatter(new(logrus.JSONFormatter))
+    logrus.SetFormatter(new(logrus.JSONFormatter))
 
 	if err := initConfig(); err != nil {
 		logrus.Fatalf("error initializing config: %s", err.Error())
