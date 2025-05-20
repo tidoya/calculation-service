@@ -1,30 +1,32 @@
 package main
 
 import (
-	"calculation-service/internal/handler"
-	Calculation "calculation-service/internal/transport/http/server"
-	"calculation-service/repository"
-	"calculation-service/service"
+    "net/http"
 
-	_ "github.com/lib/pq"
-	"github.com/sirupsen/logrus"
-
-	"github.com/spf13/viper"
+    "github.com/gin-gonic/gin"
+    swaggerFiles "github.com/swaggo/files"
+    ginSwagger "github.com/swaggo/gin-swagger"
+    _ "calculation-service/docs" // замените на ваш путь
 )
 
-//	@title Calculator APP REST API
-//	@version 1.0
-//	@description API server for Calculator application
-
-//	@host localhost:8080
-//	@BasePath /
-
+// @title Gin Swagger API
+// @version 1.0
+// @description Example API for Gin + Swagger
+// @host localhost:8080
+// @BasePath /api/v1
 //	@securityDefinitions.apikey ApiKeyAuth
 //	@in header
 //	@name Autorization
-
 func main() {
-	logrus.SetFormatter(new(logrus.JSONFormatter))
+    r := gin.Default()
+
+	api := r.Group("/api/v1")
+	{
+        api.GET("/hello", helloHandler)
+        api.GET("/hell", helloHandler2)
+	}
+
+logrus.SetFormatter(new(logrus.JSONFormatter))
 
 	if err := initConfig(); err != nil {
 		logrus.Fatalf("error initializing config: %s", err.Error())
@@ -47,12 +49,40 @@ func main() {
 	service := service.NewService(repos)
 	handlers := handler.NewHandler(service)
 
-	server := new(Calculation.Server)
-	if err := server.RunServer(viper.GetString("port"), handlers.InitRoutes()); err != nil {
-		logrus.Fatalf("error occurred while running http server: %s", err.Error())
-	}
 
+     // Добавьте роут для Swagger
+   r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+   r.Run(":8080")
 }
+
+// helloHandler godoc
+// @Summary Получить приветствие
+// @Description Возвращает простое приветственное сообщение
+// @Tags example
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} map[string]string
+// @Router /hello [get]
+func helloHandler(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": "H2el222lo, 3!",
+	})
+}
+
+// helloHandler godoc
+// @Summary Получить приветствие
+// @Description Возвращает простое приветственное сообщение
+// @Tags example
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} map[string]string
+// @Router /hell [get]
+func helloHandler2(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": "H2el11111222lo, 3!",
+	})
+}
+
 
 func initConfig() error {
 	viper.AddConfigPath("configs")

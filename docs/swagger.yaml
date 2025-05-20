@@ -1,0 +1,48 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact: {}
+  description: Example API for Gin + Swagger
+  title: Gin Swagger API
+  version: "1.0"
+paths:
+  /hell:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает простое приветственное сообщение
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить приветствие
+      tags:
+      - example
+  /hello:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает простое приветственное сообщение
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить приветствие
+      tags:
+      - example
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Autorization
+    type: apiKey
+swagger: "2.0"
